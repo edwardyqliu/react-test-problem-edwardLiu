@@ -4,6 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App.stories';
 
 // Add your tests here
+// Didn't really figure the tests out. 
 // See https://storybook.js.org/docs/react/writing-tests/importing-stories-in-tests#example-with-testing-library
 test('Checks if inital state is set to click me', () => {
     const {getText} = render(<button label = "aButton"/>);
