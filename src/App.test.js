@@ -1,20 +1,20 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-
+import React from 'react';
 // import your story from App.stories.js
-import App from './App.stories';
-
+import {Primary} from './App.stories.js';
+  
 // Add your tests here
-// Didn't really figure the tests out. 
-// See https://storybook.js.org/docs/react/writing-tests/importing-stories-in-tests#example-with-testing-library
-test('Checks if inital state is set to click me', () => {
-    const {getText} = render(<button label = "aButton"/>);
-    //console.log(screen.getByRole("button").textContent);
-    expect(screen.getByRole("button").textContent == "click me");
+// See https://storybook.js.org/docs/react/writing-tests/importing-stories-in-tests#example-with-testing-library 
+
+it("Checks if inital state is set to click me", () => {
+    const { getByRole } = render(<Primary />);
+    const buttonElement = getByRole("button", { name: "click me" });
+    expect(buttonElement).toBeInTheDocument();
 });
 
-test('Checks if state after one click is thanks!', () => {
-    const {getText} = render(<button label = "aButton"/>);
-    //console.log(screen.getByRole("button").textContent);
-    fireEvent.click(screen.getByRole("button"))
-    expect(screen.getByRole("button").textContent == "click me");
-});
+it("Checks if state after one click is thanks!", () => {
+    const { getByRole } = render(<Primary />);
+    const buttonElement = getByRole("button", { name: "click me" });
+    fireEvent.click(buttonElement);
+    expect(buttonElement).toHaveTextContent("thanks!");
+  })
